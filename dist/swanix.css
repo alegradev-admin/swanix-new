@@ -479,42 +479,60 @@ fieldset {
 }
 
 /* ----------------------------------------------
-  BUTTONS
+  BUTTON
 ---------------------------------------------- */
-:root {
-  --btn-text:                  var(--gray7) ;
-  --btn-border:                var(--gray2) solid 1px;
-  --btn-bg:                    var(--gray1) ;
-  --btn-hover-text:            var(--gray9) ;
-  --btn-hover-border:          var(--gray3) solid 1px ;
-  --btn-hover-bg:              var(--white) ;
-  --btn-padding:               1rem 1rem ;
-  --btn-primary-text:          var(--gray1) ;
-  --btn-primary-border:        var(--black) solid 2px ;
-  --btn-primary-bg:            var(--black) ;
-  --btn-primary-hover-text:    var(--white) ;
-  --btn-primary-hover-border:  var(--gray9) solid 2px ;
-  --btn-primary-hover-bg:      var(--gray9) ;
+button,
+input,
+.button {
+  /* Global */
+  --btn-padding:         10px 10px;
+  --btn-text-size:       var(--text-size-small);
+  --btn-font-weight:     600;
+  /* Basic */
+  --btn-text:            var(--gray7);
+  --btn-border:          var(--gray2) solid 1px;
+  --btn-bg:              var(--gray1);
+  /* Basic hover */
+  --btn-hover-text:      var(--gray9);
+  --btn-hover-border:    var(--gray3) solid 1px;
+  --btn-hover-bg:        var(--white);
+  /* Primary */
+  --btn-primary-text:    var(--gray1);
+  --btn-primary-border:  var(--black) solid 2px;
+  --btn-primary-bg:      var(--black);
+  /* Primary hover */
+  --btn-primary-hover-text:    var(--white);
+  --btn-primary-hover-border:  var(--gray9) solid 2px;
+  --btn-primary-hover-bg:      var(--gray9);
 }
 
-button {
-  vertical-align: middle;
-  -webkit-transition: .2s;
-  transition: .2s;
-  display: inline-block;
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   padding: var(--btn-padding);
   color: var(--btn-text);
   border: var(--btn-border);
   background: var(--btn-bg);
-  font-size: var(--text-medium);
+  font-size: var(--btn-text-size);
+  font-weight: var(--btn-font-weight);
+  font-family: sans-serif;
+  vertical-align: middle;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   outline: 0;
   /* Solves Chrome border focus */
 }
 
-button:hover {
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
   vertical-align: middle;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   color: var(--btn-hover-text);
   border: var(--btn-hover-border);
   background: var(--btn-hover-bg);
@@ -523,23 +541,26 @@ button:hover {
 }
 
 .button {
-  vertical-align: middle;
-  -webkit-transition: .2s;
-  transition: .2s;
   display: inline-block;
   padding: var(--btn-padding);
   color: var(--btn-text);
   border: var(--btn-border);
   background: var(--btn-bg);
-  font-size: var(--text-medium);
+  font-size: var(--btn-text-size);
+  font-weight: var(--btn-font-weight);
+  font-family: sans-serif;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   outline: 0;
   /* Solves Chrome border focus */
 }
 
 .button:hover {
   vertical-align: middle;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   color: var(--btn-hover-text);
   border: var(--btn-hover-border);
   background: var(--btn-hover-bg);
@@ -547,13 +568,13 @@ button:hover {
   /* Solves Chrome border focus */
 }
 
-.button.primary {
+.button.is-primary {
   color: var(--btn-primary-text);
   border: var(--btn-primary-border);
   background: var(--btn-primary-bg);
 }
 
-.button.primary:hover {
+.button.is-primary:hover {
   color: var(--btn-primary-hover-text);
   border: var(--btn-primary-hover-border);
   background: var(--btn-primary-hover-bg);
@@ -562,24 +583,24 @@ button:hover {
 /* ---------------------------------------------- 
  Shapes
 ---------------------------------------------- */
-.rounded {
+.is-rounded {
   border-radius: 50px;
   min-width: 100px;
-  padding: 1rem 2rem;
+  padding: 10px 20px;
 }
 
-.circle {
+.is-pill {
   border-radius: 50%;
   text-align: center;
-  padding: 1rem 1.1rem;
+  padding: 10px 11px;
 }
 
-.small {
+.is-small {
   width: 25px;
   height: 25px;
 }
 
-.fill {
+.is-fill {
   width: 100%;
   text-align: center;
 }
