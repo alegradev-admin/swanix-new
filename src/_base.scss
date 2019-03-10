@@ -1,0 +1,54 @@
+/* ----------------------------------------------
+  GLOBAL VARIABLES
+---------------------------------------------- */
+
+:root {
+  --white:      #FFFFFF ; 
+  --gray1:      #F2F2F2 ;
+  --gray2:      #CCCCCC ;
+  --gray3:      #B3B3B3 ;
+  --gray4:      #999999 ;
+  --gray5:      #808080 ;
+  --gray6:      #595959 ;
+  --gray7:      #4D4D4D ;
+  --gray8:      #333333 ;
+  --gray9:      #1A1A1A ;
+  --black:      #000000 ;
+
+  --size-xs:    35px ;
+  --size-s:     50px ;
+  --size-m:     200px ;
+  --size-l:     400px ;
+  --size-xl:    500px ;
+  --size-xxl:   700px ;
+
+  --header-size:   var(--size-xs);
+  --main-size:     auto ;
+  --footer-size:   var(--size-m); 
+
+  --body-bg: var(--white);  
+}
+
+
+/* ----------------------------------------------
+BODY
+---------------------------------------------- */
+
+:root {
+--body-bg: var(--white) ;
+}
+
+html {
+font-size: 100%;
+}
+
+body {
+//font-size: 16px;
+font-family: sans-serif;
+line-height: 1.5;
+background: var(--body-bg);
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+padding: 0;
+margin: 0;
+}

@@ -1,0 +1,57 @@
+/* ----------------------------------------------
+  RADIO BUTTONS
+---------------------------------------------- */
+/* Based on Stephen Morley http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/ */
+
+:root {
+
+  --input-radio:                 var(--gray6);
+  --input-radio-border:          var(--gray3) solid 2px ;
+  --input-radio-border-radius:   50% ;
+  --input-radio-bg:              var(--gray2) ;
+
+  --input-radio-active:          var(--black) ;
+  --input-radio-active-border:   var(--black) solid 2px ;
+  --input-radio-active-bg:       var(--white) ;
+  
+}
+
+input[type=radio]:not(old){
+  width     : 2rem;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1.5rem;
+  opacity   : 0;
+}
+
+input[type=radio]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -2rem;
+  line-height  : 1.5rem;
+}
+
+input[type=radio]:not(old) + label > span{
+  display          : inline-block;
+  width            : 2rem;
+  height           : 2rem;
+  margin           : 0.2rem 1rem;
+  background       : var(--input-radio-bg);
+  border           : var(--input-radio-border);
+  border-radius    : var(--input-radio-border-radius);
+  vertical-align   : middle;
+
+}
+
+input[type=radio]:not(old):checked + label > span{
+  background :    var(--input-radio-active-bg);
+  border     :    var(--input-radio-active-border);
+}
+
+input[type=radio]:not(old):checked +  label > span > span{
+  display          : block;
+  width            : 1rem;
+  height           : 1rem;
+  margin           : 0.3rem;
+  border-radius    : var(--input-radio-border-radius);
+  background       : var(--input-radio-active);
+}

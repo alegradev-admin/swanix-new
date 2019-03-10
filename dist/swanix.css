@@ -1,0 +1,797 @@
+@charset "UTF-8";
+/*!
+ * Swanix UI v0.4.0 (PostCSS)
+ * (c) 2015-present Sebastian Serna
+ * Released under the MIT License.
+ */
+/* ----------------------------------------------
+  GLOBAL VARIABLES
+---------------------------------------------- */
+:root {
+  --white:      #FFFFFF ;
+  --gray1:      #F2F2F2 ;
+  --gray2:      #CCCCCC ;
+  --gray3:      #B3B3B3 ;
+  --gray4:      #999999 ;
+  --gray5:      #808080 ;
+  --gray6:      #595959 ;
+  --gray7:      #4D4D4D ;
+  --gray8:      #333333 ;
+  --gray9:      #1A1A1A ;
+  --black:      #000000 ;
+  --size-xs:    35px ;
+  --size-s:     50px ;
+  --size-m:     200px ;
+  --size-l:     400px ;
+  --size-xl:    500px ;
+  --size-xxl:   700px ;
+  --header-size:   var(--size-xs);
+  --main-size:     auto ;
+  --footer-size:   var(--size-m);
+  --body-bg: var(--white);
+}
+
+/* ----------------------------------------------
+BODY
+---------------------------------------------- */
+:root {
+  --body-bg: var(--white) ;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background: var(--body-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+}
+
+/* ----------------------------------------------
+  GRID LAYOUT
+---------------------------------------------- */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  grid-template-rows: 60px auto 50px;
+  height: 100vh;
+}
+
+.layout-section {
+  padding: 20px;
+}
+
+.header {
+  background: #333333;
+  color: white;
+  grid-row: 1;
+  grid-column: 1 / 4;
+}
+
+.sidebar-left {
+  background: gray;
+  color: white;
+  grid-row: 2;
+  grid-column: 1 / 2;
+  overflow: auto;
+}
+
+.content {
+  grid-row: 2;
+  grid-column: 2 / 3;
+  overflow: auto;
+}
+
+.sidebar-right {
+  background: gray;
+  color: white;
+  grid-row: 2;
+  grid-column: 3 / 4;
+  overflow: auto;
+}
+
+.footer {
+  background: #333333;
+  color: white;
+  grid-row: 3;
+  grid-column: 1 / 4;
+}
+
+/* ----------------------------------------------
+  IMAGES
+---------------------------------------------- */
+img {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+
+/* Lazysizes */
+img[data-sizes="auto"] {
+  display: block;
+  width: 100%;
+}
+
+/* Fade In effect after load */
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+
+.lazyloaded {
+  opacity: 1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+
+/* Blur effect */
+.blur-up {
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  transition: filter 400ms, -webkit-filter 400ms;
+}
+
+.blur-up.lazyloaded {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+}
+
+/* For Gallery gridview thumbs */
+figure {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/*  Background with object fit (need polyfill on Internet Explorer) */
+.bg-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  -o-object-fit: cover;
+     object-fit: cover;
+  font-family: 'object-fit: cover;';
+}
+
+/* ----------------------------------------------
+  ICONS
+---------------------------------------------- */
+:root {
+  --icon-fill-color:                var(--gray6) ;
+  --icon-stroke-color:              var(--gray6) ;
+  --icon-stroke-width:              0 ;
+  --icon-hover-fill-color:          var(--gray6) ;
+  --icon-hover-stroke-color:        var(--gray6) ;
+  --icon-hover-stroke-width:        0 ;
+  --icon-size-small:                1.6rem ;
+  --icon-size-medium:               2.4rem ;
+  --icon-size-large:                3.2rem ;
+  --icon-size-huge:                 6.4rem ;
+}
+
+svg path, svg g {
+  fill: inherit;
+  /* Solves the overrides with classes on Firefox */
+}
+
+.icon {
+  display: inline-block;
+  width: var(--icon-size-medium);
+  height: var(--icon-size-medium);
+  stroke-width: var(--icon-stroke-width);
+  stroke: currentColor;
+  fill: currentColor;
+  color: var(--icon-fill-color);
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.icon.small {
+  width: var(--icon-size-small);
+  height: var(--icon-size-small);
+}
+
+.icon.medium {
+  width: var(--icon-size-medium);
+  height: var(--icon-size-medium);
+}
+
+.icon.large {
+  width: var(--icon-size-large);
+  height: var(--icon-size-large);
+}
+
+.icon.huge {
+  width: var(--icon-size-huge);
+  height: var(--icon-size-huge);
+}
+
+.icon.only {
+  margin-right: 0 !important;
+}
+
+.icon:hover {
+  stroke-width: var(--icon-hover-stroke-width);
+  stroke: currentColor;
+  fill: currentColor;
+  color: var(--icon-hover-fill-color);
+}
+
+/* ----------------------------------------------
+  TYPOGRAPHY
+---------------------------------------------- */
+:root {
+  --text-font-heading: Tahoma, Geneva, sans-serif;
+  --text-font-heading-weight:  normal ;
+  --text-font-body: Tahoma, Geneva, sans-serif;
+  --text-basic: var(--gray6);
+  --text-heading: var(--gray8);
+  --text-link: var(--gray9);
+  --text-link-hover: var(--gray7);
+  --text-link-visited: var(--gray9);
+  --text-selection: var(--gray6);
+  --text-selection-bg: var(--gray2);
+  --hr-color: var(--gray3);
+}
+
+body {
+  font-family: var(--text-font-body);
+  color: var(--text-basic);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--text-font-heading);
+  font-weight: var(--text-font-heading-weight);
+  margin: 1rem 0 2rem 0;
+  color: var(--text-heading);
+}
+
+h1 {
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+h6 {
+  font-size: 1.3rem;
+}
+
+p {
+  font-family: var(--text-font-body);
+  font-size: var(--text-medium);
+  line-height: var(--text-baseline);
+  margin: 0;
+  padding-bottom: 1.5rem;
+  color: var(--text-basic);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-link);
+  outline: 0;
+  font-size: var(--text-medium);
+}
+
+a:hover {
+  text-decoration: none;
+  -webkit-transition: .2s;
+  transition: .2s;
+  color: var(--text-link-hover);
+}
+
+a:visited {
+  color: var(--text-link-visited);
+}
+
+li {
+  font-size: var(--text-medium);
+  line-height: var(--text-baseline);
+}
+
+dl, dt, dd {
+  font-size: var(--text-medium);
+  line-height: var(--text-baseline);
+}
+
+small {
+  font-size: 90%;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+q {
+  display: inline-block;
+  font-style: italic;
+  font-size: var(--text-medium);
+}
+
+blockquote {
+  font-style: italic;
+}
+
+blockquote q {
+  display: inline-block;
+  font-style: italic;
+  font-size: var(--text-xlarge);
+  line-height: 4rem;
+}
+
+blockquote footer {
+  margin-top: 1rem;
+  color: var(--text-basic);
+  text-align: right;
+  font-size: var(--text-large);
+}
+
+cite {
+  display: inline-block;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  font-style: italic;
+}
+
+pre, code, samp, kbd {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+pre {
+  padding: 1rem 0;
+  font-size: var(--text-medium);
+  line-height: var(--text-baseline);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  color: var(--hr-color);
+  background-color: var(--hr-color);
+}
+
+/* Form texts */
+label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--text-basic);
+  font-size: var(--text-medium);
+}
+
+optgroup, option {
+  color: var(--text-basic);
+}
+
+input [type="checkbox"] {
+  color: var(--text-basic);
+}
+
+::-moz-selection {
+  color: var(--text-selection);
+  background: var(--text-selection-bg);
+}
+
+::selection {
+  color: var(--text-selection);
+  background: var(--text-selection-bg);
+}
+
+::-moz-selection {
+  color: var(--text-selection);
+  background: var(--text-selection-bg);
+}
+
+.heading {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+
+.heading {
+  margin: 10rem 2rem 3rem 2rem;
+}
+
+.no-bullets {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ----------------------------------------------
+  TABLES
+---------------------------------------------- */
+:root {
+  --table-td-border-bottom: none ;
+  --table-tr-hover-bg: var(--gray1) ;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem auto 1rem auto;
+  text-align: left;
+  font-size: var(--text-medium);
+}
+
+thead {
+  height: 2rem;
+}
+
+tbody {
+  height: 2rem;
+}
+
+tfoot {
+  height: 2rem;
+}
+
+table caption {
+  font-size: 80%;
+  margin: 1rem;
+}
+
+th {
+  text-align: left;
+  padding: 1rem 0.8rem;
+}
+
+td {
+  padding: 1rem 0.8rem;
+  border-bottom: var(--table-td-border-bottom);
+}
+
+tr:hover {
+  background: var(--table-tr-hover-bg);
+}
+
+/* ----------------------------------------------
+  FORMS
+---------------------------------------------- */
+:root {
+  --form-filedset-border:   var(--gray2);
+}
+
+legend {
+  font-size: 1.2em;
+}
+
+fieldset {
+  padding: 1em 2em;
+  border: 1px solid var(--form-filedset-border);
+}
+
+/* ----------------------------------------------
+  BUTTONS
+---------------------------------------------- */
+:root {
+  --btn-text:                  var(--gray7) ;
+  --btn-border:                var(--gray2) solid 1px;
+  --btn-bg:                    var(--gray1) ;
+  --btn-hover-text:            var(--gray9) ;
+  --btn-hover-border:          var(--gray3) solid 1px ;
+  --btn-hover-bg:              var(--white) ;
+  --btn-padding:               1rem 1rem ;
+  --btn-primary-text:          var(--gray1) ;
+  --btn-primary-border:        var(--black) solid 2px ;
+  --btn-primary-bg:            var(--black) ;
+  --btn-primary-hover-text:    var(--white) ;
+  --btn-primary-hover-border:  var(--gray9) solid 2px ;
+  --btn-primary-hover-bg:      var(--gray9) ;
+}
+
+button {
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
+  display: inline-block;
+  padding: var(--btn-padding);
+  color: var(--btn-text);
+  border: var(--btn-border);
+  background: var(--btn-bg);
+  font-size: var(--text-medium);
+  outline: 0;
+  /* Solves Chrome border focus */
+}
+
+button:hover {
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
+  color: var(--btn-hover-text);
+  border: var(--btn-hover-border);
+  background: var(--btn-hover-bg);
+  outline: 0;
+  /* Solves Chrome border focus */
+}
+
+.button {
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
+  display: inline-block;
+  padding: var(--btn-padding);
+  color: var(--btn-text);
+  border: var(--btn-border);
+  background: var(--btn-bg);
+  font-size: var(--text-medium);
+  outline: 0;
+  /* Solves Chrome border focus */
+}
+
+.button:hover {
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
+  color: var(--btn-hover-text);
+  border: var(--btn-hover-border);
+  background: var(--btn-hover-bg);
+  outline: 0;
+  /* Solves Chrome border focus */
+}
+
+.button.primary {
+  color: var(--btn-primary-text);
+  border: var(--btn-primary-border);
+  background: var(--btn-primary-bg);
+}
+
+.button.primary:hover {
+  color: var(--btn-primary-hover-text);
+  border: var(--btn-primary-hover-border);
+  background: var(--btn-primary-hover-bg);
+}
+
+/* ---------------------------------------------- 
+ Shapes
+---------------------------------------------- */
+.rounded {
+  border-radius: 50px;
+  min-width: 100px;
+  padding: 1rem 2rem;
+}
+
+.circle {
+  border-radius: 50%;
+  text-align: center;
+  padding: 1rem 1.1rem;
+}
+
+.small {
+  width: 25px;
+  height: 25px;
+}
+
+.fill {
+  width: 100%;
+  text-align: center;
+}
+
+/* ----------------------------------------------
+  RADIO BUTTONS
+---------------------------------------------- */
+/* Based on Stephen Morley http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/ */
+:root {
+  --input-radio:                 var(--gray6);
+  --input-radio-border:          var(--gray3) solid 2px ;
+  --input-radio-border-radius:   50% ;
+  --input-radio-bg:              var(--gray2) ;
+  --input-radio-active:          var(--black) ;
+  --input-radio-active-border:   var(--black) solid 2px ;
+  --input-radio-active-bg:       var(--white) ;
+}
+
+input[type=radio]:not(old) {
+  width: 2rem;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  opacity: 0;
+}
+
+input[type=radio]:not(old) + label {
+  display: inline-block;
+  margin-left: -2rem;
+  line-height: 1.5rem;
+}
+
+input[type=radio]:not(old) + label > span {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.2rem 1rem;
+  background: var(--input-radio-bg);
+  border: var(--input-radio-border);
+  border-radius: var(--input-radio-border-radius);
+  vertical-align: middle;
+}
+
+input[type=radio]:not(old):checked + label > span {
+  background: var(--input-radio-active-bg);
+  border: var(--input-radio-active-border);
+}
+
+input[type=radio]:not(old):checked + label > span > span {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.3rem;
+  border-radius: var(--input-radio-border-radius);
+  background: var(--input-radio-active);
+}
+
+/* ----------------------------------------------
+  CHECKBOXES
+---------------------------------------------- */
+/* Based on Stephen Morley http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/ */
+:root {
+  --input-check:                 var(--gray6) ;
+  --input-check-border:          var(--gray3) solid 2px ;
+  --input-check-border-radius:   0 ;
+  --input-check-bg:              var(--gray2) ;
+  --input-check-active:          var(--black) ;
+  --input-check-active-border:   var(--black) solid 2px ;
+  --input-check-active-bg:       var(--white) ;
+}
+
+input[type=checkbox]:not(old) {
+  width: 2rem;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  opacity: 0;
+}
+
+input[type=checkbox]:not(old) + label {
+  display: inline-block;
+  margin-left: -2rem;
+  line-height: 1.5rem;
+}
+
+input[type=checkbox]:not(old) + label > span {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.2rem 1rem;
+  border: var(--input-check-border);
+  border-radius: var(--input-check-border-radius);
+  background: var(--input-check-bg);
+  vertical-align: middle;
+}
+
+input[type=checkbox]:not(old):checked + label > span {
+  background: var(--input-check-active-bg);
+  border: var(--input-check-active-border);
+}
+
+input[type=checkbox]:not(old):checked + label > span:before {
+  content: '✓';
+  display: block;
+  width: 1.5rem;
+  color: var(--input-check-active);
+  font-size: 1.5rem;
+  line-height: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ----------------------------------------------
+  INPUT TEXTS 
+---------------------------------------------- */
+:root {
+  --input-text:                var(--gray6) ;
+  --input-text-border:         var(--gray3) solid 1px ;
+  --input-text-bg:             var(--white) ;
+  --input-text-focus:          var(--gray7) ;
+  --input-text-focus-border:   var(--gray5) solid 1px ;
+  --input-text-focus-bg:       var(--white) ;
+}
+
+input[type="text"] {
+  width: 100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+input[type="password"] {
+  width: 100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  letter-spacing: 3px;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+input[type="email"] {
+  width: 100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+input:focus {
+  color: var(--input-text-focus);
+  border: var(--input-text-focus-border);
+  background: var(--input-text-focus-bg);
+}
+
+textarea {
+  width: 100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  height: auto;
+  min-height: 10rem;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+textarea:focus {
+  color: var(--input-text-focus);
+  border: var(--input-text-focus-border);
+  background: var(--input-text-focus-bg);
+}
+
+/* ----------------------------------------------
+  SELECT (DROPDOWN)
+---------------------------------------------- */
+:root {
+  --dropdown-text:             var(--gray8  ) ;
+  --dropdown-border:           var(--gray5) solid 1px ;
+  --dropdown-bg:               var(--gray1) ;
+  --dropdown-bg-arrow:         url('../../images/icon-arrow.svg') 90% 50% ;
+}
+
+select {
+  background: transparent;
+  max-width: 25rem;
+  padding: 5px 35px 5px 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--dropdown-text);
+  border: var(--dropdown-border);
+  background: var(--dropdown-bg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-image: var(--dropdown-bg-arrow);
+}
+
+select {
+  font-size: var(--text-medium);
+}
+
+select option {
+  color: var(--dropdown-text);
+}
+
+select optgroup {
+  color: var(--dropdown-text);
+}

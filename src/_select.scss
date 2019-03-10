@@ -1,0 +1,39 @@
+/* ----------------------------------------------
+  SELECT (DROPDOWN)
+---------------------------------------------- */
+
+:root {
+
+  --dropdown-text:             var(--gray8  ) ;
+  --dropdown-border:           var(--gray5) solid 1px ;
+  --dropdown-bg:               var(--gray1) ;
+  --dropdown-bg-arrow:         url('../../images/icon-arrow.svg') 90% 50% ;
+  
+}
+
+select {
+  background: transparent;
+  max-width: 25rem;
+  padding: 5px 35px 5px 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--dropdown-text);
+  border: var(--dropdown-border);
+  background: var(--dropdown-bg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-image: var(--dropdown-bg-arrow);
+}
+
+select {
+  font-size: var(--text-medium);
+}
+
+select option {
+  color: var(--dropdown-text);
+}
+
+select optgroup {
+  color: var(--dropdown-text);
+}

@@ -1,0 +1,74 @@
+/* ----------------------------------------------
+  INPUT TEXTS 
+---------------------------------------------- */
+
+:root {
+
+  --input-text:                var(--gray6) ;
+  --input-text-border:         var(--gray3) solid 1px ;
+  --input-text-bg:             var(--white) ;
+
+  --input-text-focus:          var(--gray7) ;
+  --input-text-focus-border:   var(--gray5) solid 1px ;
+  --input-text-focus-bg:       var(--white) ;
+
+}
+
+input[type="text"] {
+  width:100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+input[type="text"]:disabled {
+
+}
+
+input[type="password"] {
+  width:100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  letter-spacing:3px;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+input[type="email"] {
+  width:100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+input:focus {
+  color: var(--input-text-focus);
+  border: var(--input-text-focus-border);
+  background: var(--input-text-focus-bg);
+}
+
+textarea {
+  width:100%;
+  font-size: var(--text-medium);
+  padding: 1rem 1rem;
+  height: auto;
+  min-height: 10rem;
+  color: var(--input-text);
+  border: var(--input-text-border);
+  background: var(--input-text-bg);
+  margin-bottom: 1rem;
+}
+
+textarea:focus {
+  color: var(--input-text-focus);
+  border: var(--input-text-focus-border);
+  background: var(--input-text-focus-bg);
+}
