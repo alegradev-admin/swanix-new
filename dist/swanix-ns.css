@@ -1,4 +1,9 @@
 /*!
+ * Swanix UI v0.4.0 (Sass)
+ * (c) 2015-present Sebastian Serna
+ * Released under the MIT License.
+ */
+/*!
  * Swanix UI v0.4.0 (PostCSS)
  * (c) 2015-present Sebastian Serna
  * Released under the MIT License.
@@ -106,7 +111,7 @@ body {
 ---------------------------------------------- */
 button,
 input,
-.button {
+.sw-button {
   /* Global */
   --btn-padding:         10px 10px;
   --btn-text-size:       var(--text-size-small);
@@ -158,7 +163,7 @@ input[type="reset"]:hover {
   background: var(--btn-hover-bg);
 }
 
-.button {
+.sw-button {
   display: inline-block;
   padding: var(--btn-padding);
   color: var(--btn-text);
@@ -175,19 +180,19 @@ input[type="reset"]:hover {
   /* Solves Chrome border focus */
 }
 
-.button:hover {
+.sw-button:hover {
   color: var(--btn-hover-text);
   border: var(--btn-hover-border);
   background: var(--btn-hover-bg);
 }
 
-.button.is-primary {
+.sw-button.is-primary {
   color: var(--btn-primary-text);
   border: var(--btn-primary-border);
   background: var(--btn-primary-bg);
 }
 
-.button.is-primary:hover {
+.sw-button.is-primary:hover {
   color: var(--btn-primary-hover-text);
   border: var(--btn-primary-hover-border);
   background: var(--btn-primary-hover-bg);

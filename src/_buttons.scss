@@ -4,7 +4,7 @@
 
 button,
 input,
-.button {
+.#{$ns}button {
   /* Global */
   --btn-padding:         10px 10px;
   --btn-text-size:       var(--text-size-small);
@@ -52,15 +52,12 @@ button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover {
-  vertical-align: middle;
-  transition: 0.2s;
   color: var(--btn-hover-text);
   border: var(--btn-hover-border);
   background: var(--btn-hover-bg);
-  outline: 0; /* Solves Chrome border focus */
 }
 
-.button {
+.#{$ns}button {
   display: inline-block;
   padding: var(--btn-padding);
   color: var(--btn-text);
@@ -73,28 +70,28 @@ input[type="reset"]:hover {
   vertical-align: middle;
   transition: 0.2s;
   outline: 0; /* Solves Chrome border focus */
+
+  &:hover {
+    color: var(--btn-hover-text);
+    border: var(--btn-hover-border);
+    background: var(--btn-hover-bg);
+  }
+  
+  &.is-primary {
+    color: var(--btn-primary-text);
+    border: var(--btn-primary-border);
+    background: var(--btn-primary-bg);
+  }
+  
+  &.is-primary:hover {
+    color: var(--btn-primary-hover-text);
+    border: var(--btn-primary-hover-border);
+    background: var(--btn-primary-hover-bg);
+  }
+
 }
 
-.button:hover {
-  vertical-align: middle;
-  transition: 0.2s;
-  color: var(--btn-hover-text);
-  border: var(--btn-hover-border);
-  background: var(--btn-hover-bg);
-  outline: 0; /* Solves Chrome border focus */
-}
 
-.button.is-primary {
-  color: var(--btn-primary-text);
-  border: var(--btn-primary-border);
-  background: var(--btn-primary-bg);
-}
-
-.button.is-primary:hover {
-  color: var(--btn-primary-hover-text);
-  border: var(--btn-primary-hover-border);
-  background: var(--btn-primary-hover-bg);
-}
 
 /* ---------------------------------------------- 
  Shapes

@@ -42,6 +42,7 @@ gulp.task ('sass' , function() {
       .pipe(sass(sassOptions).on('error', sass.logError))
       .pipe(autoprefixer())
       .pipe(gulp.dest(outputSass))
+      .pipe(gulp.dest(outputDocs))
       .pipe(cleanCSS())
       .pipe(rename('swanix.min.css'))
       .pipe(gulp.dest(outputSass))
