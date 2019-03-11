@@ -23,6 +23,11 @@ body {
   margin: 0;
 }
 
+.invert {
+  -webkit-filter: invert(100%) !important;
+          filter: invert(100%) !important;
+}
+
 /* ----------------------------------------------
   GRID LAYOUT
 ---------------------------------------------- */
@@ -71,6 +76,57 @@ body {
   color: white;
   grid-row: 3;
   grid-column: 1 / 4;
+}
+
+/*------------------------------------------------------------
+  Icons - Component
+------------------------------------------------------------*/
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  stroke-width: 0;
+  stroke: #666666;
+  fill: currentColor;
+  color: #666666;
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.icon:hover {
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  color: #666666;
+}
+
+.icon.small {
+  width: 16px;
+  height: 16px;
+}
+
+.icon.medium {
+  width: 24px;
+  height: 24px;
+}
+
+.icon.large {
+  width: 32px;
+  height: 32px;
+}
+
+.icon.huge {
+  width: 64px;
+  height: 64px;
+}
+
+/* Icon inside button */
+.button .icon,
+button .icon,
+input[type='reset'] .icon,
+input[type='submit'] .icon {
+  margin-right: 7px;
 }
 
 /* --------------------------------------------------------------
