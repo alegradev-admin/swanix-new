@@ -11,37 +11,9 @@
 /* ----------------------------------------------
   GLOBAL VARIABLES
 ---------------------------------------------- */
-:root {
-  --white:      #FFFFFF ;
-  --gray1:      #F2F2F2 ;
-  --gray2:      #CCCCCC ;
-  --gray3:      #B3B3B3 ;
-  --gray4:      #999999 ;
-  --gray5:      #808080 ;
-  --gray6:      #595959 ;
-  --gray7:      #4D4D4D ;
-  --gray8:      #333333 ;
-  --gray9:      #1A1A1A ;
-  --black:      #000000 ;
-  --size-xs:    35px ;
-  --size-s:     50px ;
-  --size-m:     200px ;
-  --size-l:     400px ;
-  --size-xl:    500px ;
-  --size-xxl:   700px ;
-  --header-size:   var(--size-xs);
-  --main-size:     auto ;
-  --footer-size:   var(--size-m);
-  --body-bg: var(--white);
-}
-
 /* ----------------------------------------------
 BODY
 ---------------------------------------------- */
-:root {
-  --body-bg: var(--white) ;
-}
-
 html {
   font-size: 100%;
 }
@@ -106,119 +78,224 @@ body {
   grid-column: 1 / 4;
 }
 
-/* ----------------------------------------------
-  BUTTON
----------------------------------------------- */
-button,
-input,
-.sw-button {
-  /* Global */
-  --btn-padding:         10px 10px;
-  --btn-text-size:       var(--text-size-small);
-  --btn-font-weight:     600;
-  /* Basic */
-  --btn-text:            var(--gray7);
-  --btn-border:          var(--gray2) solid 1px;
-  --btn-bg:              var(--gray1);
-  /* Basic hover */
-  --btn-hover-text:      var(--gray9);
-  --btn-hover-border:    var(--gray3) solid 1px;
-  --btn-hover-bg:        var(--white);
-  /* Primary */
-  --btn-primary-text:    var(--gray1);
-  --btn-primary-border:  var(--black) solid 2px;
-  --btn-primary-bg:      var(--black);
-  /* Primary hover */
-  --btn-primary-hover-text:    var(--white);
-  --btn-primary-hover-border:  var(--gray9) solid 2px;
-  --btn-primary-hover-bg:      var(--gray9);
-}
-
+/* --------------------------------------------------------------
+  BUTTONS
+-------------------------------------------------------------- */
 button,
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
-  padding: var(--btn-padding);
-  color: var(--btn-text);
-  border: var(--btn-border);
-  background: var(--btn-bg);
-  font-size: var(--btn-text-size);
-  font-weight: var(--btn-font-weight);
-  font-family: sans-serif;
-  vertical-align: middle;
+input[type="reset"],
+.button {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transition: .2s;
+  transition: .2s;
   cursor: pointer;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
   outline: 0;
-  /* Solves Chrome border focus */
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0px 15px;
+  color: #4d4d4d;
+  border: #cccccc solid 1px;
+  background: #f2f2f2;
+  border-radius: 0;
 }
 
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
-input[type="reset"]:hover {
-  color: var(--btn-hover-text);
-  border: var(--btn-hover-border);
-  background: var(--btn-hover-bg);
+input[type="reset"]:hover,
+.button:hover {
+  color: #1a1a1a;
+  border: #b3b3b3 solid 1px;
+  background: white;
 }
 
-.sw-button {
-  display: inline-block;
-  padding: var(--btn-padding);
-  color: var(--btn-text);
-  border: var(--btn-border);
-  background: var(--btn-bg);
-  font-size: var(--btn-text-size);
-  font-weight: var(--btn-font-weight);
-  font-family: sans-serif;
-  text-decoration: none;
-  vertical-align: middle;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  outline: 0;
-  /* Solves Chrome border focus */
+button.is-primary,
+input[type="button"].is-primary,
+input[type="submit"].is-primary,
+input[type="reset"].is-primary,
+.button.is-primary {
+  color: #f2f2f2;
+  border: black solid 1px;
+  background: black;
 }
 
-.sw-button:hover {
-  color: var(--btn-hover-text);
-  border: var(--btn-hover-border);
-  background: var(--btn-hover-bg);
+button.is-primary:hover,
+input[type="button"].is-primary:hover,
+input[type="submit"].is-primary:hover,
+input[type="reset"].is-primary:hover,
+.button.is-primary:hover {
+  color: white;
+  border: #333333 solid 1px;
+  background: #333333;
 }
 
-.sw-button.is-primary {
-  color: var(--btn-primary-text);
-  border: var(--btn-primary-border);
-  background: var(--btn-primary-bg);
+button.is-secondary,
+input[type="button"].is-secondary,
+input[type="submit"].is-secondary,
+input[type="reset"].is-secondary,
+.button.is-secondary {
+  color: #f2f2f2;
+  border: #4d4d4d solid 1px;
+  background: #4d4d4d;
 }
 
-.sw-button.is-primary:hover {
-  color: var(--btn-primary-hover-text);
-  border: var(--btn-primary-hover-border);
-  background: var(--btn-primary-hover-bg);
+button.is-secondary:hover,
+input[type="button"].is-secondary:hover,
+input[type="submit"].is-secondary:hover,
+input[type="reset"].is-secondary:hover,
+.button.is-secondary:hover {
+  color: white;
+  border: #333333 solid 1px;
+  background: #333333;
 }
 
-/* ---------------------------------------------- 
- Shapes
----------------------------------------------- */
-.is-rounded {
-  border-radius: 50px;
-  min-width: 100px;
-  padding: 10px 20px;
+button.is-outline,
+input[type="button"].is-outline,
+input[type="submit"].is-outline,
+input[type="reset"].is-outline,
+.button.is-outline {
+  color: black;
+  border: black solid 1px;
+  background: transparent;
 }
 
-.is-pill {
-  border-radius: 50%;
-  text-align: center;
-  padding: 10px 11px;
+button.is-outline:hover,
+input[type="button"].is-outline:hover,
+input[type="submit"].is-outline:hover,
+input[type="reset"].is-outline:hover,
+.button.is-outline:hover {
+  color: white;
+  border: black solid 1px;
+  background: black;
 }
 
-.is-small {
-  width: 25px;
-  height: 25px;
+button.is-ghost,
+input[type="button"].is-ghost,
+input[type="submit"].is-ghost,
+input[type="reset"].is-ghost,
+.button.is-ghost {
+  color: #666666;
+  border: transparent solid 0;
+  background: transparent;
 }
 
-.is-fill {
-  width: 100%;
-  text-align: center;
+button.is-ghost:hover,
+input[type="button"].is-ghost:hover,
+input[type="submit"].is-ghost:hover,
+input[type="reset"].is-ghost:hover,
+.button.is-ghost:hover {
+  color: black;
+  border: transparent solid 0;
+  background: transparent;
+}
+
+button.is-small,
+input[type="button"].is-small,
+input[type="submit"].is-small,
+input[type="reset"].is-small,
+.button.is-small {
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0px 15px;
+}
+
+button.is-medium,
+input[type="button"].is-medium,
+input[type="submit"].is-medium,
+input[type="reset"].is-medium,
+.button.is-medium {
+  font-size: 14px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0px 15px;
+}
+
+button.is-large,
+input[type="button"].is-large,
+input[type="submit"].is-large,
+input[type="reset"].is-large,
+.button.is-large {
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+  padding: 0px 15px;
+}
+
+button.is-square,
+input[type="button"].is-square,
+input[type="submit"].is-square,
+input[type="reset"].is-square,
+.button.is-square {
+  border-radius: 0;
+}
+
+button.is-rounded,
+input[type="button"].is-rounded,
+input[type="submit"].is-rounded,
+input[type="reset"].is-rounded,
+.button.is-rounded {
+  border-radius: 5px;
+}
+
+button.is-rounded-left,
+input[type="button"].is-rounded-left,
+input[type="submit"].is-rounded-left,
+input[type="reset"].is-rounded-left,
+.button.is-rounded-left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+button.is-rounded-right,
+input[type="button"].is-rounded-right,
+input[type="submit"].is-rounded-right,
+input[type="reset"].is-rounded-right,
+.button.is-rounded-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+button.is-pill,
+input[type="button"].is-pill,
+input[type="submit"].is-pill,
+input[type="reset"].is-pill,
+.button.is-pill {
+  border-radius: 40px;
+}
+
+button.is-pill-left,
+input[type="button"].is-pill-left,
+input[type="submit"].is-pill-left,
+input[type="reset"].is-pill-left,
+.button.is-pill-left {
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+button.is-pill-right,
+input[type="button"].is-pill-right,
+input[type="submit"].is-pill-right,
+input[type="reset"].is-pill-right,
+.button.is-pill-right {
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.button-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }

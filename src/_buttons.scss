@@ -1,120 +1,230 @@
-/* ----------------------------------------------
-  BUTTON
----------------------------------------------- */
+/* --------------------------------------------------------------
+  BUTTONS
+-------------------------------------------------------------- */
 
-button,
-input,
-.#{$ns}button {
-  /* Global */
-  --btn-padding:         10px 10px;
-  --btn-text-size:       var(--text-size-small);
-  --btn-font-weight:     600;
-  
-  /* Basic */
-  --btn-text:            var(--gray7);
-  --btn-border:          var(--gray2) solid 1px;
-  --btn-bg:              var(--gray1);
-  /* Basic hover */
-  --btn-hover-text:      var(--gray9);
-  --btn-hover-border:    var(--gray3) solid 1px;
-  --btn-hover-bg:        var(--white);
- 
-  /* Primary */
-  --btn-primary-text:    var(--gray1);
-  --btn-primary-border:  var(--black) solid 2px;
-  --btn-primary-bg:      var(--black);
-  /* Primary hover */
-  --btn-primary-hover-text:    var(--white);
-  --btn-primary-hover-border:  var(--gray9) solid 2px;
-  --btn-primary-hover-bg:      var(--gray9);
-}
+// VARIABLES
+// -----------------------------------------------------------
 
+// General
+// ------------------
+$btn-font-family:            sans-serif;
+$btn-font-weight:            600 !default;
+$btn-border-radius:          0 !default;
+
+// Sizes
+// ------------------
+// Small
+$btn-text-small:             12px !default;
+$btn-height-small:           24px !default;
+$btn-padding-small:          0px 15px !default;
+// Medium
+$btn-text-medium:            14px !default;
+$btn-height-medium:          38px !default;
+$btn-padding-medium:         0px 15px !default;
+// Large
+$btn-text-large:             16px !default;
+$btn-height-large:           48px !default;
+$btn-padding-large:          0px 15px !default;
+
+// Types
+// ------------------
+// Btn Default
+$btn-text:                   hsl(0,0,30) !default;
+$btn-border:                 hsl(0,0,80) solid 1px !default;
+$btn-bg:                     hsl(0,0,95) !default;
+// Btn Default hover
+$btn-hover-text:             hsl(0,0,10) !default;
+$btn-hover-border:           hsl(0,0,70) solid 1px !default;
+$btn-hover-bg:               hsl(0,0,100) !default;
+
+// Btn Primary
+$btn-primary-text:           hsl(0,0,95) !default;
+$btn-primary-border:         hsl(0,0,0) solid 1px !default;
+$btn-primary-bg:             hsl(0,0,0) !default;
+// Btn Primary hover
+$btn-primary-hover-text:     hsl(0,0,100) !default;
+$btn-primary-hover-border:   hsl(0,0,20) solid 1px !default;
+$btn-primary-hover-bg:       hsl(0,0,20) !default;
+
+// Btn Secondary
+$btn-secondary-text:          hsl(0,0,95) !default;
+$btn-secondary-border:        hsl(0,0,30) solid 1px !default;
+$btn-secondary-bg:            hsl(0,0,30) !default;
+// Btn Secondary hover
+$btn-secondary-hover-text:    hsl(0,0,100) !default;
+$btn-secondary-hover-border:  hsl(0,0,20) solid 1px !default;
+$btn-secondary-hover-bg:      hsl(0,0,20) !default;
+
+// Btn Outline
+$btn-outline-text:          hsl(0,0,0) !default;
+$btn-outline-border:        hsl(0,0,0) solid 1px !default;
+$btn-outline-bg:            transparent !default;
+// Btn Outline hover
+$btn-outline-hover-text:    hsl(0,0,100) !default;
+$btn-outline-hover-border:  hsl(0,0,0) solid 1px !default;
+$btn-outline-hover-bg:      hsl(0,0,0) !default;
+
+// Btn Ghost
+$btn-ghost-text:            hsl(0,0,40) !default;
+$btn-ghost-border:          transparent solid 0 !default;
+$btn-ghost-bg:              transparent !default;
+// Btn Ghost hover
+$btn-ghost-hover-text:      hsl(0,0,0) !default;
+$btn-ghost-hover-border:    transparent solid 0 !default;
+$btn-ghost-hover-bg:        transparent !default;
+
+// STYLES
+// -----------------------------------------------------------
 
 button,
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
-  padding: var(--btn-padding);
-  color: var(--btn-text);
-  border: var(--btn-border);
-  background: var(--btn-bg);
-  font-size: var(--btn-text-size);
-  font-weight: var(--btn-font-weight);
-  font-family: sans-serif;
-  vertical-align: middle;
+input[type="reset"],
+.button {
+  box-sizing: border-box;
   display: inline-block;
-  cursor: pointer;
-  transition: 0.2s;
-  outline: 0; /* Solves Chrome border focus */
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover {
-  color: var(--btn-hover-text);
-  border: var(--btn-hover-border);
-  background: var(--btn-hover-bg);
-}
-
-.#{$ns}button {
-  display: inline-block;
-  padding: var(--btn-padding);
-  color: var(--btn-text);
-  border: var(--btn-border);
-  background: var(--btn-bg);
-  font-size: var(--btn-text-size);
-  font-weight: var(--btn-font-weight);
-  font-family: sans-serif;
   text-decoration: none;
   vertical-align: middle;
-  transition: 0.2s;
-  outline: 0; /* Solves Chrome border focus */
+  transition:.2s;
+  cursor: pointer;
+  outline:0;
+  // Font
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  // Size
+  font-size: $btn-text-medium;
+  height: $btn-height-medium;
+  line-height: $btn-height-medium;
+  padding: $btn-padding-medium;
+  // Color
+  color: $btn-text;
+  border: $btn-border;
+  background: $btn-bg;
+  // Shape
+  border-radius: $btn-border-radius;
 
   &:hover {
-    color: var(--btn-hover-text);
-    border: var(--btn-hover-border);
-    background: var(--btn-hover-bg);
+    color: $btn-hover-text;
+    border: $btn-hover-border;
+    background: $btn-hover-bg;
   }
-  
+  //------------------------------
+  // Primary
+  //------------------------------
   &.is-primary {
-    color: var(--btn-primary-text);
-    border: var(--btn-primary-border);
-    background: var(--btn-primary-bg);
+    color: $btn-primary-text;
+    border: $btn-primary-border;
+    background: $btn-primary-bg;
   }
   
   &.is-primary:hover {
-    color: var(--btn-primary-hover-text);
-    border: var(--btn-primary-hover-border);
-    background: var(--btn-primary-hover-bg);
+    color: $btn-primary-hover-text;
+    border: $btn-primary-hover-border;
+    background: $btn-primary-hover-bg;
+  }
+  //------------------------------
+  // Secondary
+  //------------------------------
+  &.is-secondary {
+    color: $btn-secondary-text;
+    border: $btn-secondary-border;
+    background: $btn-secondary-bg;
+  }
+  
+  &.is-secondary:hover {
+    color: $btn-secondary-hover-text;
+    border: $btn-secondary-hover-border;
+    background: $btn-secondary-hover-bg;
+  }
+  //------------------------------
+  // Outline
+  //------------------------------
+  &.is-outline {
+    color: $btn-outline-text;
+    border: $btn-outline-border;
+    background: $btn-outline-bg;
+  }
+  
+  &.is-outline:hover {
+    color: $btn-outline-hover-text;
+    border: $btn-outline-hover-border;
+    background: $btn-outline-hover-bg;
+  }
+  //------------------------------
+  // Ghost
+  //------------------------------
+  &.is-ghost {
+    color: $btn-ghost-text;
+    border: $btn-ghost-border;
+    background: $btn-ghost-bg;
+  }
+  
+  &.is-ghost:hover {
+    color: $btn-ghost-hover-text;
+    border: $btn-ghost-hover-border;
+    background: $btn-ghost-hover-bg;
+  }
+  //------------------------------
+  // Sizes
+  //------------------------------
+  &.is-small {
+    font-size: $btn-text-small;
+    height: $btn-height-small;
+    line-height: $btn-height-small;
+    padding: $btn-padding-small; 
+  }  
+  
+  &.is-medium {
+    font-size: $btn-text-medium;
+    height: $btn-height-medium;
+    line-height: $btn-height-medium;
+    padding: $btn-padding-medium;   
   }
 
+  &.is-large {
+    font-size: $btn-text-large;
+    height: $btn-height-large;
+    line-height: $btn-height-large;
+    padding: $btn-padding-large; 
+  }  
+  //------------------------------
+  // Shapes
+  //------------------------------  
+    &.is-square {
+      border-radius: 0;
+    }    
+  
+    &.is-rounded {
+      border-radius: 5px;
+    }  
+  
+    &.is-rounded-left {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px
+    }  
+  
+    &.is-rounded-right {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px
+    }  
+
+    &.is-pill {
+      border-radius: 40px;
+    } 
+  
+    &.is-pill-left {
+      border-top-left-radius: 40px;
+      border-bottom-left-radius: 40px
+    }  
+  
+    &.is-pill-right {
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 40px
+    }  
+  
 }
 
-
-
-/* ---------------------------------------------- 
- Shapes
----------------------------------------------- */
-
-.is-rounded {
-  border-radius: 50px;
-  min-width: 100px;
-  padding: 10px 20px;
-}
-
-.is-pill {
-  border-radius: 50%;
-  text-align: center;
-  padding: 10px 11px;
-}
-
-.is-small {
-  width: 25px;
-  height: 25px;
-}
-
-.is-fill {
-  width: 100%;
-  text-align: center;
+.button-group {
+    display: flex;
+    flex-direction: row;
 }

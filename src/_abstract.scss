@@ -1,0 +1,59 @@
+
+// Dimensions
+
+$size-xs:    3.5rem   !default;
+$size-s:     5rem   !default;
+$size-m:     20rem   !default;
+$size-l:     40rem  !default;
+$size-xl:    50rem  !default;
+$size-xxl:   70rem  !default;
+
+$width-sidebar-tiny: 4rem;
+
+// Text sizes
+
+$text-tiny:    0.6rem  !default;
+$text-small:   1.2rem  !default;
+$text-medium:  1.4rem  !default;
+$text-large:   1.9rem  !default;
+$text-xlarge:  2.4rem  !default;
+$text-huge:    3.4rem  !default;
+
+$text-baseline: 2.5rem !default;
+
+// Layout Dimens
+
+$header-size: $size-xs !default;
+$main-size: auto !default;
+$footer-size: $size-m !default;
+
+
+// GRAYSCALE PALETTE variables (white to black)
+
+$white:             hsl(0,0,100) ; // White (HTML color: white) #FFFFFF
+$gray1:             hsl(0,0,95); // #F2F2F2
+$gray2:             hsl(0,0,80); // #CCCCCC
+$gray3:             hsl(0,0,70); // #B3B3B3
+$gray4:             hsl(0,0,60); // #999999
+$gray5:             hsl(0,0,50); // Gray medium (HTML color: gray) #808080
+$gray6:             hsl(0,0,45); // #737373
+$gray7:             hsl(0,0,30); // #4D4D4D
+$gray8:             hsl(0,0,20); // #333333
+$gray9:             hsl(0,0,10); // #1A1A1A
+$black:             hsl(0,0,0) ; // Black (HTML color: black) #000000
+
+$primary:           #000000 !default; // Black
+$secondary:         #999999 !default; // Gray
+
+
+$white:             hsl(0,0,100) ; // White (HTML color: white) #FFFFFF
+$gray9:             hsl(0,0,95); // #F2F2F2
+$gray8:             hsl(0,0,80); // #CCCCCC
+$gray7:             hsl(0,0,70); // #B3B3B3
+$gray6:             hsl(0,0,60); // #999999
+$gray5:             hsl(0,0,50); // Gray medium (HTML color: gray) #808080
+$gray4:             hsl(0,0,45); // #737373
+$gray3:             hsl(0,0,30); // #4D4D4D
+$gray2:             hsl(0,0,20); // #333333
+$gray1:             hsl(0,0,10); // #1A1A1A
+$black:             hsl(0,0,0); // Black (HTML color: black) #000000
