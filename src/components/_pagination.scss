@@ -1,67 +1,81 @@
-/* ----------------------------------------------
-  PAGINATION
----------------------------------------------- */
+// -----------------------------------------------------------
+// PAGINATION by Sebastian Serna - 2016
+// -----------------------------------------------------------
+// Based on Refills http://refills.bourbon.io/components/
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:root {
 
-    --pag-item-text:                          inherit  ;
-    --pag-item-bg:                            var(--gray1) ;
-    --pag-item-border:                        var(--gray2) 1px solid ;
-    --pag-item-border-radius:                 0 ;
+// VARIABLES
+// ----------------------------------------------
 
-    --pag-item-hover-text:                    inherit  ;
-    --pag-item-hover-bg:                      var(--white) ;
-    --pag-item-hover-border:                  var(--gray4) 1px solid ;
+//pagination item
+$pag-item-text:                inherit !default;
+$pag-item-bg:                  $gray1 !default;
+$pag-item-border:              $gray2 1px solid !default;
+$pag-item-border-radius:       0 !default;
+//pagination item hover
+$pag-item-hover-text:          inherit !default;
+$pag-item-hover-bg:            $white !default;
+$pag-item-hover-border:        $gray4 1px solid !default;
+//pagination item active
+$pag-item-active-text:         $white !default;
+$pag-item-active-bg:           $primary !default;
+$pag-item-active-border:       $primary 1px solid !default;
 
-    --pag-item-active-text:                    var(--white)   ;
-    --pag-item-active-bg:                      var(--black) ;
-    --pag-item-active-border:                  var(--black) 1px solid ;
 
-}
+// STYLES
+// ----------------------------------------------
 
 .pagination {
-    text-align: center;
-}
-  
-.pagination ul {
+  text-align: center;
+
+  ul {
     margin: 2rem 1rem;
     padding: 0;
     text-align: center;
-}
-  
-.pagination ul li {
-    display: inline-block;
-    list-style: none;
-}
-  
-.pagination ul li {
-    display: inline;
+
+    li {
+      display: inline-block;
+      list-style: none;
+    }
+
+    ul li {
+      display: none;
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3) {
+        display: inline;
+      }
+
+    }
+
+    li a {
+      background: $pag-item-bg;
+      border-radius: $pag-item-border-radius;
+      border: $pag-item-border;
+      color: $pag-item-text;
+      outline: none;
+      padding: 1rem 1.5rem ;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+
+      &:hover,
+      &:focus {
+        color: $pag-item-hover-text;
+        background: $pag-item-hover-bg;
+        border: $pag-item-hover-border;
+      }
+
+      &:active {
+        background: $pag-item-active-bg;
+      }
+    }
+  }
 }
 
-.pagination li a {
-    background: var(--pag-item-bg);
-    border-radius: var(--pag-item-border-radius);
-    border: var(--pag-item-border);
-    color: var(--pag-item-text);
-    outline: none;
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-}
-  
-.pagination li a:hover,
-.pagination li a:focus {
-    color: var(--pag-item-hover-text);
-    background: var(--pag-item-hover-bg);
-    border: var(--pag-item-hover-border);
-}
-  
-.pagination li a:active {
-    background: var(--pag-item-active-bg);
-}
-  
-.pagination li.page-active a {
-    background: var(--pag-item-active-bg) !important;
-    color: var(--pag-item-active-text) !important;
-    border: var(--pag-item-active-border) !important;
+li.page-active a {
+  background: $pag-item-active-bg !important;
+  color: $pag-item-active-text !important;
+  border: $pag-item-active-border !important;
 }

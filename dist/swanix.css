@@ -350,3 +350,44 @@ input[type="reset"].is-pill-right,
       -ms-flex-direction: row;
           flex-direction: row;
 }
+
+.nav,
+.nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.nav.is-horizontal {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.nav.is-vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.nav-item,
+.nav-item a {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+  color: inherit;
+  text-decoration: none;
+  vertical-align: middle;
+  text-align: left;
+}

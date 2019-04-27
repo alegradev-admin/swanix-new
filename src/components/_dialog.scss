@@ -1,21 +1,26 @@
-/* ----------------------------------------------
-  DIALOG
----------------------------------------------- */
-/* Based on https://github.com/thephuse/vanilla-modal */
+// -----------------------------------------------------------
+// MODAL DIALOG by Sebastian Serna - 2016
+// -----------------------------------------------------------
+// Based on Vanilla Modal https://github.com/thephuse/vanilla-modal
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:root {
 
-    --modal-bg:                    var(--white);
-    --modal-shadow:                rgba(0,0,0,0.5);
-    --modal-btn-close-bg:          var(--gray7);
-    --modal-btn-close-icon:        var(--gray2);
-    
-    --modal-btn-close-hover-bg:    var(--black);
-    --modal-btn-close-hover-icon:  var(white);
-    
-    --modal-fade-bg:               rgba(0, 0, 0, 0.8);
+// VARIABLES
+// -----------------------------------------------------------
 
-}
+$modal-bg:                    $white !default;
+$modal-shadow:                rgba(0,0,0,0.5) !default;
+$modal-btn-close-bg:          $gray7 !default;
+$modal-btn-close-icon:        $gray2 !default;
+// Hover
+$modal-btn-close-hover-bg:    $black !default;
+$modal-btn-close-hover-icon:  $white !default;
+// Fade bg
+$modal-fade-bg:               rgba(0, 0, 0, 0.8) !default;
+
+
+// STYLES
+// -----------------------------------------------------------
 
 .modal {
   display: none;
@@ -29,7 +34,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--modal-fade-bg);
+  background: $modal-fade-bg;
   z-index: -1;
   opacity: 0;
   font-size: 0;
@@ -70,7 +75,7 @@
   max-height: 90%;
   overflow-x: hidden;
   overflow-y: auto;
-  background: var(--modal-bg);
+  background: $modal-bg;
   z-index: -1;
   opacity: 0;
   transform: scale(0);
@@ -94,12 +99,12 @@ a[rel="modal:close"] {
   font-size: 13px;
   cursor: pointer;
   text-align: center;
-  color: var(--modal-btn-close-icon);
-  background: var(--modal-btn-close-bg);
-  box-shadow: -1px 1px 2px var(--modal-shadow);
+  color: $modal-btn-close-icon;
+  background: $modal-btn-close-bg;
+  box-shadow: -1px 1px 2px $modal-shadow;
 }
 
 a[rel="modal:close"]:hover {
-  color: var(--modal-btn-close-hover-icon);
-  background: var(--modal-btn-close-hover-bg);
+  color: $modal-btn-close-hover-icon;
+  background: $modal-btn-close-hover-bg;
 }
