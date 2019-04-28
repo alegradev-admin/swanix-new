@@ -1,0 +1,374 @@
+/*!
+ * Swanix UI v0.4.0 (PostCSS)
+ * (c) 2015-present Sebastian Serna
+ * Released under the MIT License.
+ */
+/* ----------------------------------------------
+  GLOBAL VARIABLES
+---------------------------------------------- */
+/* ----------------------------------------------
+BODY
+---------------------------------------------- */
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background: var(--body-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+}
+
+.sw-invert {
+  filter: invert(100%) !important;
+}
+
+/* ----------------------------------------------
+  GRID LAYOUT
+---------------------------------------------- */
+.sw-layout {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 224px 1fr;
+  grid-template-rows: 56px auto;
+  grid-template-areas: "sidebar     header" "sidebar     content";
+}
+
+@media all and (max-width: 700px) {
+  .sw-layout {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px 0 1fr 44px;
+    grid-template-areas: "header" "sidebar" "content" "footer";
+  }
+}
+
+.sw-header {
+  grid-area: header;
+  background: #333333;
+  color: white;
+}
+
+.sw-content {
+  grid-area: content;
+  overflow: auto;
+  padding: 32px;
+}
+
+.sw-sidebar {
+  grid-area: sidebar;
+  background: #1a1a1a;
+  overflow: auto;
+  color: white;
+}
+
+.sw-footer {
+  grid-area: footer;
+  background: #333333;
+  color: white;
+}
+
+/*------------------------------------------------------------
+  Icons - Component
+------------------------------------------------------------*/
+.sw-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  stroke-width: 0;
+  stroke: #666666;
+  fill: currentColor;
+  color: #666666;
+  vertical-align: middle;
+  transition: .2s;
+}
+
+.sw-icon:hover {
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  color: #666666;
+}
+
+.sw-icon.small {
+  width: 16px;
+  height: 16px;
+}
+
+.sw-icon.medium {
+  width: 24px;
+  height: 24px;
+}
+
+.sw-icon.large {
+  width: 32px;
+  height: 32px;
+}
+
+.sw-icon.sw-huge {
+  width: 64px;
+  height: 64px;
+}
+
+/* Icon inside button */
+.sw-button .sw-icon,
+button .sw-icon,
+input[type='reset'] .sw-icon,
+input[type='submit'] .sw-icon {
+  margin-right: 7px;
+}
+
+/* --------------------------------------------------------------
+  BUTTONS
+-------------------------------------------------------------- */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.sw-button {
+  box-sizing: border-box;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  transition: .2s;
+  cursor: pointer;
+  outline: 0;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0px 15px;
+  color: #4d4d4d;
+  border: #cccccc solid 1px;
+  background: #f2f2f2;
+  border-radius: 0;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.sw-button:hover {
+  color: #1a1a1a;
+  border: #b3b3b3 solid 1px;
+  background: white;
+}
+
+button.is-primary,
+input[type="button"].is-primary,
+input[type="submit"].is-primary,
+input[type="reset"].is-primary,
+.sw-button.is-primary {
+  color: #f2f2f2;
+  border: black solid 1px;
+  background: black;
+}
+
+button.is-primary:hover,
+input[type="button"].is-primary:hover,
+input[type="submit"].is-primary:hover,
+input[type="reset"].is-primary:hover,
+.sw-button.is-primary:hover {
+  color: white;
+  border: #333333 solid 1px;
+  background: #333333;
+}
+
+button.is-secondary,
+input[type="button"].is-secondary,
+input[type="submit"].is-secondary,
+input[type="reset"].is-secondary,
+.sw-button.is-secondary {
+  color: #f2f2f2;
+  border: #4d4d4d solid 1px;
+  background: #4d4d4d;
+}
+
+button.is-secondary:hover,
+input[type="button"].is-secondary:hover,
+input[type="submit"].is-secondary:hover,
+input[type="reset"].is-secondary:hover,
+.sw-button.is-secondary:hover {
+  color: white;
+  border: #333333 solid 1px;
+  background: #333333;
+}
+
+button.is-outline,
+input[type="button"].is-outline,
+input[type="submit"].is-outline,
+input[type="reset"].is-outline,
+.sw-button.is-outline {
+  color: black;
+  border: black solid 1px;
+  background: transparent;
+}
+
+button.is-outline:hover,
+input[type="button"].is-outline:hover,
+input[type="submit"].is-outline:hover,
+input[type="reset"].is-outline:hover,
+.sw-button.is-outline:hover {
+  color: white;
+  border: black solid 1px;
+  background: black;
+}
+
+button.is-ghost,
+input[type="button"].is-ghost,
+input[type="submit"].is-ghost,
+input[type="reset"].is-ghost,
+.sw-button.is-ghost {
+  color: #666666;
+  border: transparent solid 0;
+  background: transparent;
+}
+
+button.is-ghost:hover,
+input[type="button"].is-ghost:hover,
+input[type="submit"].is-ghost:hover,
+input[type="reset"].is-ghost:hover,
+.sw-button.is-ghost:hover {
+  color: black;
+  border: transparent solid 0;
+  background: transparent;
+}
+
+button.is-small,
+input[type="button"].is-small,
+input[type="submit"].is-small,
+input[type="reset"].is-small,
+.sw-button.is-small {
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0px 15px;
+}
+
+button.is-medium,
+input[type="button"].is-medium,
+input[type="submit"].is-medium,
+input[type="reset"].is-medium,
+.sw-button.is-medium {
+  font-size: 14px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0px 15px;
+}
+
+button.is-large,
+input[type="button"].is-large,
+input[type="submit"].is-large,
+input[type="reset"].is-large,
+.sw-button.is-large {
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+  padding: 0px 15px;
+}
+
+button.is-square,
+input[type="button"].is-square,
+input[type="submit"].is-square,
+input[type="reset"].is-square,
+.sw-button.is-square {
+  border-radius: 0;
+}
+
+button.is-rounded,
+input[type="button"].is-rounded,
+input[type="submit"].is-rounded,
+input[type="reset"].is-rounded,
+.sw-button.is-rounded {
+  border-radius: 5px;
+}
+
+button.is-rounded-left,
+input[type="button"].is-rounded-left,
+input[type="submit"].is-rounded-left,
+input[type="reset"].is-rounded-left,
+.sw-button.is-rounded-left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+button.is-rounded-right,
+input[type="button"].is-rounded-right,
+input[type="submit"].is-rounded-right,
+input[type="reset"].is-rounded-right,
+.sw-button.is-rounded-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+button.is-pill,
+input[type="button"].is-pill,
+input[type="submit"].is-pill,
+input[type="reset"].is-pill,
+.sw-button.is-pill {
+  border-radius: 40px;
+}
+
+button.is-pill-left,
+input[type="button"].is-pill-left,
+input[type="submit"].is-pill-left,
+input[type="reset"].is-pill-left,
+.sw-button.is-pill-left {
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+button.is-pill-right,
+input[type="button"].is-pill-right,
+input[type="submit"].is-pill-right,
+input[type="reset"].is-pill-right,
+.sw-button.is-pill-right {
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.sw-button-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.sw-menu,
+.sw-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.sw-menu.is-horizontal {
+  flex-direction: row;
+  height: 100%;
+}
+
+.sw-menu.is-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sw-menu a,
+.sw-menu li {
+  color: inherit;
+  text-decoration: none;
+  padding-left: 20px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.sw-menu-logo {
+  padding: 20px 20px;
+}

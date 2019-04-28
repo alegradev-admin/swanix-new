@@ -26,8 +26,10 @@
     "gulp-clean-css": "3.4.1",
     "gulp-nunjucks": "4.0.0",
     "gulp-plumber": "1.1.0",
+    "gulp-postcss": "8.0.0",
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",
-    "gulp-sourcemaps": "2.6.0"
+    "gulp-sourcemaps": "2.6.0",
+    "postcss-prefixer": "^2.1.1"
   }
 }

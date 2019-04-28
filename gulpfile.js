@@ -13,6 +13,8 @@ var gulp = require('gulp' ),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
     browserSync = require('browser-sync'),
+    postcss = require('gulp-postcss'),
+    postcssPrefixer = require('postcss-prefixer'),
     nunjucks = require('gulp-nunjucks');
 
 
@@ -54,6 +56,22 @@ gulp.task ('sass' , function() {
 });
 
 //-----------------------------------------------------
+// PostCSS compiler task (CSS namespace)
+//-----------------------------------------------------
+
+gulp.task('css-ns', function () {
+  var plugins = [
+      postcssPrefixer({ 
+          prefix: 'sw-',
+          ignore: ([ /is-/, '.small', '.medium', '.large' ])      
+        })
+       ];
+  return gulp.src('./dist/*.css')
+      .pipe(postcss(plugins))
+      .pipe(gulp.dest('./dist/ns/'));
+});
+
+//-----------------------------------------------------
 // HTML compiler task
 //-----------------------------------------------------
 
@@ -91,7 +109,7 @@ gulp.task ('browser-sync' , function() {
 // Watch tasks
 //-----------------------------------------------------
 
-gulp.task('watch', ['html', 'sass', 'browser-sync'] , function() {
-      gulp.watch(inputSass, ['sass']);
+gulp.task('watch', ['html', 'sass', 'css-ns', 'browser-sync'] , function() {
+      gulp.watch(inputSass, ['sass', 'css-ns']);
       gulp.watch(inputAllHtml, ['html']);
 });
