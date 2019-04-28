@@ -2,29 +2,37 @@
 // MENU by Sebastian Serna - 2019
 // -----------------------------------------------------------
 
-.nav,
-.nav ul {
+.menu,
+.menu ul {
   display: flex;
   list-style: none;
-  padding-left: 0;
-  flex: 1;
+  padding: 0;
+  margin: 0;
+  height: 100%;
   align-items: center;
-  height:100%;
+  // background: blue;
 }
 
-.nav.is-horizontal {
+.menu.is-horizontal {
   flex-direction: row;
+  height: 100%;
 }
 
-.nav.is-vertical {
+.menu.is-vertical {
   flex-direction: column;
+  align-items: flex-start;
 }
 
-.nav-item,
-.nav-item a {
-  flex: auto;
+.menu a,
+.menu li {
   color: inherit;
   text-decoration: none;
+  padding-left: 20px;
   vertical-align: middle;
-  text-align: left;
+  font-size: 14px;
+  // background: green;
+}
+
+.menu-logo {
+  padding: 20px 20px;
 }

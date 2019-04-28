@@ -23,9 +23,8 @@
   "devDependencies": {
     "browser-sync": "2.18.12",
     "gulp": "3.9.1",
-    "gulp-autoprefixer": "4.0.0",
     "gulp-clean-css": "3.4.1",
-    "gulp-install": "1.1.0",
+    "gulp-nunjucks": "4.0.0",
     "gulp-plumber": "1.1.0",
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <!-- Global -->
+  <title>Swanix - Experimental UI framework</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Experimental UI Framework">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon.png" />
+  <!-- Styles and fonts -->
+  <link href="styles/swanix.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="layout">
+    <div class="header">
+        <div class="menu">
+           <a href="/">UI</a>
+           <a href="/icons">ICONS</a>
+           <a href="/palettes">PALETTES</a>
+           <a href="/brand">BRAND</a>
+           <a href="/mockups">MOCKUPS</a>
+        </div>
+    </div>
+    <div class="sidebar">
+    {% include "partials/_common-menu.njk" %}
+    </div>
+    <div class="content">
+    {% block content %}
+    {% endblock %}
+    </div>
+</div>
+</body>
+</html>

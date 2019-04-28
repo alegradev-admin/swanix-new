@@ -10,10 +10,11 @@ var gulp = require('gulp' ),
     plumber = require('gulp-plumber'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    nunjucks = require('gulp-nunjucks');
+
 
 //-----------------------------------------------------
 // Global variables
@@ -27,9 +28,12 @@ var sassOptions = {
   errLogToConsole: true,
   outputStyle: 'expanded'
 };
+var outputDocs = 'docs/styles/';
 
-var outputDocs = 'docs/';
-
+// Nunjucks to HTML
+var inputHtml = 'docs/templates/*.njk';
+var inputAllHtml = 'docs/templates/**/*.njk';
+var outputHtml = 'docs/';
 
 //-----------------------------------------------------
 // Sass compiler task
@@ -40,7 +44,6 @@ gulp.task ('sass' , function() {
       .src(inputSass)
       .pipe(plumber())
       .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(autoprefixer())
       .pipe(gulp.dest(outputSass))
       .pipe(gulp.dest(outputDocs))
       .pipe(cleanCSS())
@@ -48,6 +51,20 @@ gulp.task ('sass' , function() {
       .pipe(gulp.dest(outputSass))
       .pipe(gulp.dest(outputDocs))
       .pipe(browserSync.stream());
+});
+
+//-----------------------------------------------------
+// HTML compiler task
+//-----------------------------------------------------
+
+gulp.task('html', function () {
+  gulp
+    .src(inputHtml)
+    .pipe(nunjucks.compile())
+    .pipe(rename({
+      extname: '.html'
+    }))
+    .pipe(gulp.dest(outputHtml));
 });
 
 //-----------------------------------------------------
@@ -65,7 +82,7 @@ gulp.task ('browser-sync' , function() {
         }
     });
     gulp.watch([
-      'docs/*.html',
+      'docs/**/*.html',
       'dist/*.css'
       ]).on("change", browserSync.reload);
 });
@@ -74,7 +91,7 @@ gulp.task ('browser-sync' , function() {
 // Watch tasks
 //-----------------------------------------------------
 
-gulp.task('watch', ['sass', 'browser-sync'] , function() {
+gulp.task('watch', ['html', 'sass', 'browser-sync'] , function() {
       gulp.watch(inputSass, ['sass']);
-      gulp.watch(outputDocs, ['browser-sync']);
+      gulp.watch(inputAllHtml, ['html']);
 });
