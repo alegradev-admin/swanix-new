@@ -15,6 +15,10 @@ var gulp = require('gulp' ),
     browserSync = require('browser-sync'),
     postcss = require('gulp-postcss'),
     postcssPrefixer = require('postcss-prefixer'),
+    header = require('gulp-header'),
+    stripCssComments = require('gulp-strip-css-comments'),
+    removeEmptyLines = require('gulp-remove-empty-lines'),
+    data = require('gulp-data'),
     nunjucks = require('gulp-nunjucks');
 
 
@@ -41,7 +45,7 @@ var outputHtml = 'docs/';
 // Sass compiler task
 //-----------------------------------------------------
 
-gulp.task ('sass' , function() {
+gulp.task ('sass', ['inject-version'] , function() {
     return gulp
       .src(inputSass)
       .pipe(plumber())
@@ -78,11 +82,38 @@ gulp.task('css-ns', function () {
 gulp.task('html', function () {
   gulp
     .src(inputHtml)
+    .pipe(data(function() {
+      pkg = require('./package.json');
+      return pkg;
+    }))
     .pipe(nunjucks.compile())
     .pipe(rename({
       extname: '.html'
     }))
     .pipe(gulp.dest(outputHtml));
+});
+
+//-----------------------------------------------------
+// CSS version header task
+//-----------------------------------------------------
+
+// Using data from package.json
+var pkg = require('./package.json');
+var pkgVersion = ['/*!',
+  ' * <%= pkg.name %> - v<%= pkg.version %>',
+  ' * <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  '  ',
+  ''].join('\n');
+ 
+// Inject version header
+gulp.task('inject-version', function(){
+    gulp.src('./src/swanix.scss')
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(removeEmptyLines())
+    .pipe(header(pkgVersion, { pkg : pkg } ))
+    .pipe(gulp.dest('./src/'));
 });
 
 //-----------------------------------------------------
@@ -92,8 +123,8 @@ gulp.task('html', function () {
 gulp.task ('browser-sync' , function() {
     browserSync.init({
         server: {
-          baseDir: 'docs',
-          index: 'index.html',
+          baseDir: './',
+          index: './docs/index.html',
           serveStaticOptions: {
             extensions: ['html']
           }
@@ -101,7 +132,8 @@ gulp.task ('browser-sync' , function() {
     });
     gulp.watch([
       'docs/**/*.html',
-      'dist/*.css'
+      'dist/*.css',
+      './package.json'
       ]).on("change", browserSync.reload);
 });
 
@@ -110,6 +142,12 @@ gulp.task ('browser-sync' , function() {
 //-----------------------------------------------------
 
 gulp.task('watch', ['html', 'sass', 'css-ns', 'browser-sync'] , function() {
-      gulp.watch(inputSass, ['sass', 'css-ns']);
+      gulp.watch(inputSass, ['sass', 'css-ns' ]);
       gulp.watch(inputAllHtml, ['html']);
 });
+
+//-----------------------------------------------------
+// Version task
+//-----------------------------------------------------
+
+gulp.task('update-version', ['html', 'sass', 'css-ns', ]);

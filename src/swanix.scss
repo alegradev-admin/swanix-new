@@ -1,22 +1,19 @@
 /*!
- * Swanix UI v0.4.0 (PostCSS)
- * (c) 2015-present Sebastian Serna
- * Released under the MIT License.
+ * Swanix - v0.3.0
+ * https://github.com/swanix/ui#readme
+ * @license MIT
  */
-
+  
 // Global
 @import "abstract";
 @import "base";
-
 // Layout
 @import "grid";
-
 // Media Elements
 // @import "images";
  @import "icons";
 // @import "text";
 // @import "text-tables";
-
 // Interactive Elements
 // @import "forms";
 @import "buttons";
@@ -24,11 +21,9 @@
 // @import "checkboxes";
 // @import "text-input";
 // @import "select";
-//@import "switches";
-//@import "sliders";
-//@import "scrollbar";
-//@import "progress";
-
+// @import "switches";
+// @import "sliders";
+// @import "scrollbar";
+// @import "progress";
 // Components
 @import "components/menu";
-
