@@ -41,6 +41,11 @@ var inputHtml = 'docs/templates/*.njk';
 var inputAllHtml = 'docs/templates/**/*.njk';
 var outputHtml = 'docs/';
 
+// Package.json
+
+var pkgNpm = 'package.json';
+
+
 //-----------------------------------------------------
 // Sass compiler task
 //-----------------------------------------------------
@@ -63,16 +68,16 @@ gulp.task ('sass', ['inject-version'] , function() {
 // PostCSS compiler task (CSS namespace)
 //-----------------------------------------------------
 
-gulp.task('css-ns', function () {
+gulp.task('css-ns', ['sass'], function () {
   var plugins = [
       postcssPrefixer({ 
           prefix: 'sw-',
           ignore: ([ /is-/, '.small', '.medium', '.large' ])      
         })
        ];
-  return gulp.src('./dist/*.css')
+  return gulp.src('dist/*.css')
       .pipe(postcss(plugins))
-      .pipe(gulp.dest('./dist/ns/'));
+      .pipe(gulp.dest('dist/ns/'));
 });
 
 //-----------------------------------------------------
@@ -83,6 +88,7 @@ gulp.task('html', function () {
   gulp
     .src(inputHtml)
     .pipe(data(function() {
+      delete require.cache[require.resolve('./package.json')];
       pkg = require('./package.json');
       return pkg;
     }))
@@ -98,6 +104,7 @@ gulp.task('html', function () {
 //-----------------------------------------------------
 
 // Using data from package.json
+delete require.cache[require.resolve('./package.json')];
 var pkg = require('./package.json');
 var pkgVersion = ['/*!',
   ' * <%= pkg.name %> - v<%= pkg.version %>',
@@ -106,14 +113,15 @@ var pkgVersion = ['/*!',
   ' */',
   '  ',
   ''].join('\n');
- 
+
+
 // Inject version header
 gulp.task('inject-version', function(){
-    gulp.src('./src/swanix.scss')
+    gulp.src('src/swanix.scss')
     .pipe(stripCssComments({preserve: false}))
     .pipe(removeEmptyLines())
     .pipe(header(pkgVersion, { pkg : pkg } ))
-    .pipe(gulp.dest('./src/'));
+    .pipe(gulp.dest('src/'));
 });
 
 //-----------------------------------------------------
@@ -124,7 +132,7 @@ gulp.task ('browser-sync' , function() {
     browserSync.init({
         server: {
           baseDir: './',
-          index: './docs/index.html',
+          index: 'docs/index.html',
           serveStaticOptions: {
             extensions: ['html']
           }
@@ -133,7 +141,7 @@ gulp.task ('browser-sync' , function() {
     gulp.watch([
       'docs/**/*.html',
       'dist/*.css',
-      './package.json'
+      'package.json'
       ]).on("change", browserSync.reload);
 });
 
@@ -144,10 +152,6 @@ gulp.task ('browser-sync' , function() {
 gulp.task('watch', ['html', 'sass', 'css-ns', 'browser-sync'] , function() {
       gulp.watch(inputSass, ['sass', 'css-ns' ]);
       gulp.watch(inputAllHtml, ['html']);
+      gulp.watch(pkgNpm, ['sass', 'css-ns', 'html']).on('change', browserSync.reload);
 });
 
-//-----------------------------------------------------
-// Version task
-//-----------------------------------------------------
-
-gulp.task('update-version', ['html', 'sass', 'css-ns', ]);
