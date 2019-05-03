@@ -131,8 +131,8 @@ gulp.task('inject-version', function(){
 gulp.task ('browser-sync' , function() {
     browserSync.init({
         server: {
-          baseDir: './',
-          index: 'docs/index.html',
+          baseDir: 'docs',
+          index: 'index.html',
           serveStaticOptions: {
             extensions: ['html']
           }

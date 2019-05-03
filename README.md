@@ -3,8 +3,6 @@
 
 Experimental UI framework. Work in progress...
 
-==========
-
 ## Requisitos
 
 Antes de iniciar debes tener previamente instalados:
@@ -32,12 +30,12 @@ Las dependencias se instalan en la carpeta `node_modules` (creada automáticamen
 ```
 $ gulp watch
 ```
-Este comando ejecuta un servidor estático que apunta a la carpeta `docs` este abrirá el navegador de forma automática mostrando el sitio de prueba con ejemplos del framework y observando si se realizan cambios en los archivos de la carpeta `src` para generar el código de estilos CSS, HTML y JavaScript.
+Este comando ejecuta un servidor estático que apunta a la carpeta `docs` este abrirá el navegador de forma automática mostrando el sitio de prueba con ejemplos del framework y observando si se realizan cambios en los archivos de la carpeta `src` para generar el código de estilos CSS y HTML.
 
 ## Estructura de Directorios
 
 ```sh
-swanix/  # Carpeta raíz del repositorio
+ui/  # Carpeta raíz del repositorio
 │
 ├── dist/               # Código generado para producción         
 │   ├── ns/  
