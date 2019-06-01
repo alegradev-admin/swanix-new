@@ -28,7 +28,7 @@ Este comando instalará las dependencias de Node.js especificadas en el archivo 
 Las dependencias se instalan en la carpeta `node_modules` (creada automáticamente con el comando `npm install`) y luego de instaladas podemos utilizar Gulp para ver nuestra página de inicio con:
 
 ```
-$ gulp watch
+$ npm run watch
 ```
 Este comando ejecuta un servidor estático que apunta a la carpeta `docs` este abrirá el navegador de forma automática mostrando el sitio de prueba con ejemplos del framework y observando si se realizan cambios en los archivos de la carpeta `src` para generar el código de estilos CSS y HTML.
 
@@ -64,7 +64,7 @@ ui/  # Carpeta raíz del repositorio
 └---------------------------------------------------------
 ```
 
-Cuando ejecutamos el comando `gulp watch` cualquier cambio realizado en los archivos de la carpeta `src` se compilarán en la carpeta `dist` utilizando el plugin `gulp-sass`.
+Cuando ejecutamos el comando `npm run watch` cualquier cambio realizado en los archivos de la carpeta `src` se compilarán en la carpeta `dist` utilizando el plugin `gulp-sass`.
 
 
 ## Módulos de Node.js
