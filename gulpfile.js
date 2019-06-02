@@ -1,92 +1,58 @@
 //-----------------------------------------------------
-// SWANIX UI
+// Swanix UI
 // by Sebastian Serna
-// 2015 - 2018
+// (c) 2015-present
 //-----------------------------------------------------
 
-'use strict';
-
-var gulp = require('gulp' ),
-    plumber = require('gulp-plumber'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
-    cleanCSS = require('gulp-clean-css'),
-    rename = require('gulp-rename'),
-    browserSync = require('browser-sync'),
-    postcss = require('gulp-postcss'),
-    postcssPrefixer = require('postcss-prefixer'),
-    header = require('gulp-header'),
-    stripCssComments = require('gulp-strip-css-comments'),
-    removeEmptyLines = require('gulp-remove-empty-lines'),
-    data = require('gulp-data'),
-    nunjucks = require('gulp-nunjucks');
-
-
-//-----------------------------------------------------
-// Global variables
-//-----------------------------------------------------
-
-
-// Sass to CSS
-var inputSass = 'src/**/*.scss';
-var outputSass = 'dist/';
-var sassOptions = {
-  errLogToConsole: true,
-  outputStyle: 'expanded'
-};
-var outputDocs = 'docs/styles/';
-
-// Nunjucks to HTML
-var inputHtml = 'docs/templates/*.njk';
-var inputAllHtml = 'docs/templates/**/*.njk';
-var outputHtml = 'docs/';
-
-// Package.json
-
-var pkgNpm = 'package.json';
-
+const { src, dest, watch, series, parallel } = require('gulp');
+// General plugins
+const browserSync = require('browser-sync');
+const rename = require("gulp-rename");
+const plumber = require('gulp-plumber');
+const nunjucks = require('gulp-nunjucks');
+const data = require('gulp-data');
+const header = require('gulp-header');
+// Project specific
+const sass = require('gulp-sass'); 
+const sourcemaps = require('gulp-sourcemaps');
+const cleanCSS = require('gulp-clean-css');
+const postcss = require("gulp-postcss");
+const postcssPrefixer = require('postcss-prefixer');
+const stripCssComments = require('gulp-strip-css-comments');
+const removeEmptyLines = require('gulp-remove-empty-lines');
 
 //-----------------------------------------------------
-// Sass compiler task
+// Server tasks
 //-----------------------------------------------------
 
-gulp.task ('sass', ['inject-version'] , function() {
-    return gulp
-      .src(inputSass)
-      .pipe(plumber())
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(gulp.dest(outputSass))
-      .pipe(gulp.dest(outputDocs))
-      .pipe(cleanCSS())
-      .pipe(rename('swanix.min.css'))
-      .pipe(gulp.dest(outputSass))
-      .pipe(gulp.dest(outputDocs))
-      .pipe(browserSync.stream());
-});
-
-//-----------------------------------------------------
-// PostCSS compiler task (CSS namespace)
-//-----------------------------------------------------
-
-gulp.task('css-ns', ['sass'], function () {
-  var plugins = [
-      postcssPrefixer({ 
-          prefix: 'sw-',
-          ignore: ([ /is-/, '.small', '.medium', '.large' ])      
-        })
-       ];
-  return gulp.src('dist/*.css')
-      .pipe(postcss(plugins))
-      .pipe(gulp.dest('dist/ns/'));
-});
+function watch_files() {
+  browserSync.init({
+    server: {
+        baseDir: 'docs',
+        index: 'index.html',
+        serveStaticOptions: {
+          extensions: ['html']
+        }
+    }
+  });
+  watch('./docs/**/*.njk', html_compiler);
+  watch('./docs/**/*.html').on('change', browserSync.reload);
+  watch('./docs/**/*.json').on('change', browserSync.reload);
+  watch('./docs/**/*.svg').on('change', browserSync.reload);
+  watch('package.json', series(html_compiler, inject_version, sass_compiler, css_ns));
+}
 
 //-----------------------------------------------------
 // HTML compiler task
 //-----------------------------------------------------
 
-gulp.task('html', function () {
-  gulp
-    .src(inputHtml)
+// Nunjucks to HTML paths
+var inputHtml = 'docs/templates/*.njk';
+var inputAllHtml = 'docs/templates/**/*.njk';
+var outputHtml = 'docs/';
+
+function html_compiler() {
+  return src(inputHtml)
     .pipe(data(function() {
       delete require.cache[require.resolve('./package.json')];
       pkg = require('./package.json');
@@ -96,8 +62,49 @@ gulp.task('html', function () {
     .pipe(rename({
       extname: '.html'
     }))
-    .pipe(gulp.dest(outputHtml));
-});
+    .pipe(dest(outputHtml));
+}
+
+//-----------------------------------------------------
+// Sass compiler task
+//-----------------------------------------------------
+
+// Sass paths
+var inputSass = 'src/**/*.scss';
+var outputSass = 'dist/';
+var outputDocs = 'docs/styles/';
+var sassOptions = {
+  errLogToConsole: true,
+  outputStyle: 'expanded'
+};
+
+function sass_compiler() {
+  return src(inputSass)
+    .pipe(plumber())
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(dest(outputSass))
+    .pipe(dest(outputDocs))
+    .pipe(cleanCSS())
+    .pipe(rename('swanix.min.css'))
+    .pipe(dest(outputSass))
+    .pipe(dest(outputDocs));
+}
+
+//-----------------------------------------------------
+// PostCSS compiler task (CSS namespace)
+//-----------------------------------------------------
+
+function css_ns() {
+var plugins = [
+    postcssPrefixer({ 
+        prefix: 'sw-',
+        ignore: ([ /is-/, '.small', '.medium', '.large' ])      
+      })
+     ];
+return src('dist/*.css')
+    .pipe(postcss(plugins))
+    .pipe(dest('dist/ns/'));
+}
 
 //-----------------------------------------------------
 // CSS version header task
@@ -114,44 +121,22 @@ var pkgVersion = ['/*!',
   '  ',
   ''].join('\n');
 
-
 // Inject version header
-gulp.task('inject-version', function(){
-    gulp.src('src/swanix.scss')
+function inject_version() {
+    return src('src/swanix.scss')
     .pipe(stripCssComments({preserve: false}))
     .pipe(removeEmptyLines())
     .pipe(header(pkgVersion, { pkg : pkg } ))
-    .pipe(gulp.dest('src/'));
-});
+    .pipe(dest('src/'));
+}
 
 //-----------------------------------------------------
-// BrowserSync task (server)
+// TASKS
 //-----------------------------------------------------
 
-gulp.task ('browser-sync' , function() {
-    browserSync.init({
-        server: {
-          baseDir: 'docs',
-          index: 'index.html',
-          serveStaticOptions: {
-            extensions: ['html']
-          }
-        }
-    });
-    gulp.watch([
-      'docs/**/*.html',
-      'dist/*.css',
-      'package.json'
-      ]).on("change", browserSync.reload);
-});
-
-//-----------------------------------------------------
-// Watch tasks
-//-----------------------------------------------------
-
-gulp.task('watch', ['html', 'sass', 'css-ns', 'browser-sync'] , function() {
-      gulp.watch(inputSass, ['sass', 'css-ns' ]);
-      gulp.watch(inputAllHtml, ['html']);
-      gulp.watch(pkgNpm, ['sass', 'css-ns', 'html']).on('change', browserSync.reload);
-});
-
+exports.default = watch_files;
+exports.watch = watch_files;
+exports.html = html_compiler;
+exports.sass = series(inject_version, sass_compiler);
+exports.namespace = series(sass, css_ns);
+exports.build = series(inject_version, sass_compiler, html_compiler);
