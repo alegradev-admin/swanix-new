@@ -8,27 +8,27 @@ Experimental UI framework. Work in progress...
 Antes de iniciar debes tener previamente instalados:
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (versión 4 o superior)
+- [Node.js](https://nodejs.org/)
 
 ## Instalación
 
 En una carpeta vacía de tu equipo escribe el siguiente comando en la terminal:
 
 ```
-$ git clone https://github.com/swanix/ui.git
+git clone https://github.com/swanix/ui.git
 ```
 
 Cuando se termine de clonar el proyecto escribe el comando:
 
 ```
-$ npm install
+npm install
 ```
 Este comando instalará las dependencias de Node.js especificadas en el archivo `package.json` (en esencia se trata de [Gulp.js](http://gulpjs.com/) y una serie de plugins necesarios para automatizar algunas tareas de desarrollo).
 
 Las dependencias se instalan en la carpeta `node_modules` (creada automáticamente con el comando `npm install`) y luego de instaladas podemos utilizar Gulp para ver nuestra página de inicio con:
 
 ```
-$ npm run watch
+npm run watch
 ```
 Este comando ejecuta un servidor estático que apunta a la carpeta `docs` este abrirá el navegador de forma automática mostrando el sitio de prueba con ejemplos del framework y observando si se realizan cambios en los archivos de la carpeta `src` para generar el código de estilos CSS y HTML.
 
@@ -76,7 +76,7 @@ Para el desarrollo se utilizan los siguientes módulos de Node.js (la mayoría s
 |browser-sync|2.18.12|Permite ejecutar un servidor local y visualizar nuestro sitio en múltiples navegadores remotos en tiempo real.|
 |gulp|3.9.1|Módulo oficial de Gulp para Node.js|
 |gulp-sass|3.1.0|Permite compilar código Sass en CSS sin necesidad de instalar la gema de Sass de Ruby, solo desde Node.js|
-|gulp-clean-css|3.4.1|Permite minificar el código CSS eliminando espacios y comentarios. Este tipo de prácticas se utilizan para generar código listo para un ambiente de producción.|
+|gulp-clean-css|4.2.0|Permite minificar el código CSS eliminando espacios y comentarios. Este tipo de prácticas se utilizan para generar código listo para un ambiente de producción.|
 |gulp-rename|1.2.2|Permite renombrar archivos con el nombre que le especifiquemos|
 |gulp-nunjucks|4.0.0|Motor de plantillas basado en Nunjucks. Se utiliza en Swanix para crear layouts HTML con partials reutilizables. |
 |gulp-plumber|1.1.0|Permite manejar e identificar errores en tiempo de ejecución.|

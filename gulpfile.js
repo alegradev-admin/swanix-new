@@ -39,6 +39,8 @@ function watch_files() {
   watch('./docs/**/*.html').on('change', browserSync.reload);
   watch('./docs/**/*.json').on('change', browserSync.reload);
   watch('./docs/**/*.svg').on('change', browserSync.reload);
+  watch('./dist/**/*.css').on('change', browserSync.reload);
+  watch('./src/**/*.scss', series(sass_compiler, css_ns));
   watch('package.json', series(html_compiler, inject_version, sass_compiler, css_ns));
 }
 
