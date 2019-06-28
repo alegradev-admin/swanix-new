@@ -56,12 +56,14 @@ function reload(done) {
 // Nunjucks to HTML paths
 var inputHtml = 'docs/templates/*.njk';
 var outputHtml = 'docs/';
+var jsonPkg = './package.json';
+var jsonData = './docs/content/data.json';
 
 function html_compiler() {
   return src(inputHtml)
     .pipe(data(function() {
-      delete require.cache[require.resolve('./package.json')];
-      pkg = require('./package.json');
+      delete require.cache[require.resolve(jsonPkg)];
+      pkg = require(jsonPkg);
       return pkg;
     }))
     .pipe(nunjucks.compile())

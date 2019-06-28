@@ -1,0 +1,87 @@
+{% import "macros/colors.njk" as macroColors %}
+
+{% set colors = [
+    {
+        "color_name"  : "brandColor",
+        "color_value" : "blue",
+        "color_notes" : "Our main color."
+
+    },
+    {
+        "color_name"  : "brandHighlight",
+        "color_value" : "royalblue",
+        "color_notes" : "For callouts and highlights."
+    },
+    {
+        "color_name"  : "TEST",
+        "color_value" : "rebeccapurple",
+        "color_notes" : "For callouts and highlights."
+    },
+    {
+        "color_name"  : "brandHighlight",
+        "color_value" : "green",
+        "color_notes" : "For callouts and highlights."
+    },
+    {
+        "color_name"  : "BLABLA",
+        "color_value" : "red",
+        "color_notes" : "For callouts and highlights."
+    },
+    {
+        "color_name"  : "grayDark",
+        "color_value" : "gray",
+        "color_notes" : "For things like code block backgrounds."
+    }  
+]
+%}
+
+
+<div class="pattern">
+
+<h2>Color Swatches</h2>
+
+<div class="swatches">
+    {% for color in colors %}
+
+      {{ 
+        macroColors.cardSwatch(
+         color.color_name, 
+         color.color_value, 
+         color.color_notes
+        ) 
+      }}
+
+    {% endfor %}
+</div>
+
+
+</div>
+
+<style>
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+}
+.color-swatch-tile {
+  width: 160px;
+  padding: 10px;
+  box-shadow: 0 0 6px #ccc;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+.color-swatch {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+}
+.color-name {
+  font-weight: bold;
+  margin: 0 0 3px 0;
+}
+.color-notes {
+  font-size: 0.9rem;
+}
+
+</style>
