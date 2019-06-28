@@ -35,13 +35,18 @@ function watch_files() {
         }
     }
   });
-  watch('./docs/**/*.njk', html_compiler);
-  watch('./docs/**/*.html').on('change', browserSync.reload);
+
   watch('./docs/**/*.json').on('change', browserSync.reload);
   watch('./docs/**/*.svg').on('change', browserSync.reload);
-  watch('./dist/**/*.css').on('change', browserSync.reload);
-  watch('./src/**/*.scss', series(sass_compiler, css_ns));
-  watch('package.json', series(html_compiler, inject_version, sass_compiler, css_ns));
+  watch('./docs/**/*.html').on('change', browserSync.reload);
+  watch('./docs/**/*.njk', series(html_compiler, reload));
+  watch('./src/**/*.scss', series(sass_compiler, css_ns, reload));
+  watch('package.json', series(html_compiler, inject_version, sass_compiler, css_ns, reload));
+}
+
+function reload(done) {
+    browserSync.reload();
+    done();
 }
 
 //-----------------------------------------------------
@@ -50,7 +55,6 @@ function watch_files() {
 
 // Nunjucks to HTML paths
 var inputHtml = 'docs/templates/*.njk';
-var inputAllHtml = 'docs/templates/**/*.njk';
 var outputHtml = 'docs/';
 
 function html_compiler() {
@@ -74,7 +78,7 @@ function html_compiler() {
 // Sass paths
 var inputSass = 'src/**/*.scss';
 var outputSass = 'dist/';
-var outputDocs = 'docs/styles/';
+var outputDocs = 'docs/assets/styles/';
 var sassOptions = {
   errLogToConsole: true,
   outputStyle: 'expanded'
